@@ -17,7 +17,7 @@ class Engine {
 	public function loadFile($filename)
 	{
 		ob_start();
-		require $this->viewDir . $filename . $extension;
+		require_once $this->viewDir . $filename . $this->extension;
 		$file = ob_get_clean();
 		echo($file);
 		return true;
