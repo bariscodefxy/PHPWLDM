@@ -1,0 +1,12 @@
+{
+    "name": "bariscodefx/elbion-engine",
+    "description": "A template engine for PHP",
+    "license": "GNUv3",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Elbion\\": "src/Elbion/"
+        }
+    },
+    "require": {}
+}
