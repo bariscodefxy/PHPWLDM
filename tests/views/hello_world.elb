@@ -1,3 +1,6 @@
 var hello_world = "Hello World!"
-elb.echo(hello_world)
-elb.echo("<br>test")
+if($hello_world === "Hello World!")
+	elb.echo("true")
+else
+	elb.echo("false")
+endif

@@ -7,4 +7,4 @@ use Elbion\Engine;
 $engine = new Engine();
 $engine->setViewDir("views/");
 $engine->setCacheDir("cache/");
-$engine->view("hello_world");
+echo $engine->view("hello_world");

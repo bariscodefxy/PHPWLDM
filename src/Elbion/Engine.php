@@ -30,13 +30,12 @@ class Engine {
 	public function view($filename)
 	{
 		$this->viewName = $filename;
-		ob_start();
-		require_once $this->viewDir . $filename . $this->extension;
-		$file = ob_get_clean();
+		$file = file_get_contents($this->viewDir . $filename . $this->extension);
 		$this->view = $file;
 		$this->parse();
+		ob_start();
 		include_once $this->cacheDir . $this->viewName;
-		return true;
+		return ob_get_clean();
 	}
 
 	public function setViewDir($viewFolder = "views/")
@@ -54,6 +53,7 @@ class Engine {
 	protected function parse(): void 
 	{
 		$this->parseVariables();
+		$this->parseIf();
 		$this->parseEcho();
 		$this->save();
 	}
@@ -61,6 +61,13 @@ class Engine {
 	protected function parseVariables(): void
 	{
 		$this->view = preg_replace("/var ([A-Za-z-_]+)(\s+)=(\s+)(.*)/", "<?php \$$1 = $4; ?>", $this->view);
+	}
+
+	protected function parseIf(): void
+	{
+		$this->view = preg_replace("/if\((.*)\)/", "<?php if($1): ?>", $this->view);
+		$this->view = preg_replace("/else/", "<?php else: ?>", $this->view);
+		$this->view = preg_replace("/endif/", "<?php endif; ?>", $this->view);
 	}
 
 	protected function parseEcho(): void
