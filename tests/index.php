@@ -2,9 +2,7 @@
 
 require_once "../vendor/autoload.php";
 
-use Elbion\Engine;
+use phpwldm\PHPWLDM;
 
-$engine = new Engine();
-$engine->setViewDir("views/");
-$engine->setCacheDir("cache/");
-echo $engine->view("hello_world");
+$wldm = new PHPWLDM();
+echo $wldm->getTemplateEngine()->LoadFile("test");
