@@ -36,7 +36,7 @@ class TemplateEngine
 
     public function LoadFile(string $file) {
         ob_start();
-        include $this->viewDirectory . "test.wldm.php";
+        include $this->viewDirectory . $file;
         $file = ob_get_clean();
         return $file;
     }
